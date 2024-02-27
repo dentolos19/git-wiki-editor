@@ -10,9 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
   const isWikiWorkspace = config.get<boolean>("isWikiWorkspace", false);
 
   if (isWikiWorkspace) {
-    vscode.window.showInformationMessage("This is a wiki workspace!");
     if (fs.existsSync(path.join(vscode.workspace.rootPath || "", ".git"))) {
-      vscode.window.showInformationMessage("There is a git repository!");
       return;
     }
     const repoFullName = config.get<string>("repoFullName");
@@ -21,6 +19,10 @@ export function activate(context: vscode.ExtensionContext) {
       `git remote add origin https://github.com/${repoFullName}.wiki.git`,
       `git pull origin master`,
       `git checkout --orphan wiki`
+    );
+    vscode.window.showInformationMessage("Wiki workspace initialized!");
+    vscode.window.showInformationMessage(
+      'Once you are done making changes, run "Git Wiki Editor: Publish Wiki" to publish your changes!'
     );
   }
 
