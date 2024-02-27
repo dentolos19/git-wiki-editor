@@ -10,8 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished",
-    "workspaceContains:filePattern:wiki"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
