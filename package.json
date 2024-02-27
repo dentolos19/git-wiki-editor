@@ -1,0 +1,63 @@
+{
+  "name": "git-wiki-editor",
+  "displayName": "Git Wiki Editor",
+  "description": "",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "workspaceContains:filePattern:wiki"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-wiki-editor.openWiki",
+        "title": "Open Wiki"
+      },
+      {
+        "command": "git-wiki-editor.publishWiki",
+        "title": "Publish Wiki"
+      }
+    ],
+    "configuration": {
+      "title": "Git Wiki Editor",
+      "properties": {
+        "git-wiki-editor.isWikiWorkspace": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the current workspace is a wiki workspace. Do not set manually!"
+        },
+        "git-wiki-editor.repoFullName": {
+          "type": "string",
+          "default": "",
+          "description": "The GitHub repository that the wiki belongs to. Do not set manually!"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.86.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
