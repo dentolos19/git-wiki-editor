@@ -5,7 +5,33 @@
 
 An easy way to edit wikis directly inside your editor!
 
-> **Note**: We only support GitHub at the moment!
+## ⚙️ Features
+
+- [ ] Supports GitHub and ~~GitLab~~
+- [x] Able to clone wiki in isolation (stored in temp folder)
+- [x] Allows you to commit either as a new commit or a single (orphaned) commit
+
+### Roadmap
+
+- [ ] Safety checks (for orphan commits)
+- [ ] Has the ability to edit private repos' wiki (TODO)
+- [ ] Local backups
+
+## 🧑‍💻 Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+### Prerequisites
+
+- [VSCode](https://code.visualstudio.com) 1.86+
+- [pnpm](https://pnpm.io) 8+
+
+### Installation
+
+1. Clone the repo: `git clone https://github.com/dentolos19/git-wiki-editor.git`
+2. Install dependencies: `pnpm install`
+3. Open the project in VSCode: `code .`
+4. Run the extension: <kbd>F5</kbd>
 
 ## 💖 Credits
 
