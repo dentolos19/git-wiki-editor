@@ -1,13 +1,10 @@
-<h1>
-    <img src="icon.png" style="height: 1em"/>
-    <span>Git Wiki Editor</span>
-</h1>
+# Git Wiki Editor
 
 An easy way to edit wikis directly inside your editor!
 
 ## ⚙️ Features
 
-- [ ] Supports GitHub and ~~GitLab~~
+- [x] Supports GitHub and ~~GitLab~~
 - [x] Able to clone wiki in isolation (stored in temp folder)
 - [x] Allows you to commit either as a new commit or a single (orphaned) commit
 

@@ -1,8 +1,14 @@
 {
   "name": "git-wiki-editor",
   "displayName": "Git Wiki Editor",
-  "description": "",
+  "description": "An easy way to edit wikis directly inside your editor!",
+  "publisher": "dentolos19",
   "version": "1.0.0",
+  "icon": "public/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dentolos19/git-wiki-editor.git"
+  },
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -44,19 +50,22 @@
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "pack": "pnpm vsce pack --no-dependencies",
+    "publish": "pnpm vsce publish --no-dependencies"
   },
   "devDependencies": {
-    "@types/vscode": "^1.86.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
+    "@types/vscode": "^1.86.0",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
     "@vscode/test-cli": "^0.0.6",
-    "@vscode/test-electron": "^2.3.9"
+    "@vscode/test-electron": "^2.3.9",
+    "@vscode/vsce": "^2.24.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
   }
 }
