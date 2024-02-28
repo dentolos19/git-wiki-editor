@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as os from "os";
 import * as path from "path";
 import * as vscode from "vscode";
+import * as github from "./github";
 import * as utils from "./utils";
 
 const config = vscode.workspace.getConfiguration("git-wiki-editor");
@@ -13,7 +14,7 @@ async function openWiki() {
   if (!username) {
     return;
   }
-  const repos = await utils
+  const repos = await github
     .getRepos(username)
     .then((repos) => repos.filter((repo) => repo.has_wiki));
   const repo = await vscode.window

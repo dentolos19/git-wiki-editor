@@ -40,7 +40,6 @@
         },
         "git-wiki-editor.repoFullName": {
           "type": "string",
-          "default": "",
           "description": "The GitHub repository that the wiki belongs to. Do not set manually!"
         }
       }
