@@ -49,27 +49,65 @@ async function openWiki() {
       settings: {
         "git-wiki-editor.isWikiWorkspace": true,
         "git-wiki-editor.repoFullName": repo.full_name,
-      }
+      },
     })
   );
-  await vscode.commands.executeCommand("vscode.openFolder", vscode.Uri.file(wikiWorkspaceFilePath));
+  await vscode.commands.executeCommand(
+    "vscode.openFolder",
+    vscode.Uri.file(wikiWorkspaceFilePath)
+  );
 }
 
-function publishWiki() {
+async function publishWiki() {
   const isWikiWorkspace = config.get<boolean>("isWikiWorkspace", false);
   const repoFullName = config.get<string>("repoFullName");
+
   if (!repoFullName || !isWikiWorkspace) {
     vscode.window.showErrorMessage("Please open a wiki first!");
     return;
   }
-  utils.executeCommands(
-    `git branch -D main`,
-    `git push origin -D master`,
-    `git add .`,
-    `git commit -m "Wiki"`,
-    `git branch -m master`,
-    `git push -f origin master`
-  );
+
+  const asOrphan = await vscode.window.showQuickPick([
+    {
+      label: "Push as a new commit",
+      description: "Push your changes as per normal.",
+      data: false,
+    },
+    {
+      label: "Push as a single commit",
+      description: "Squash all your changes into a single commit.",
+      data: true,
+    },
+  ]);
+
+  const commitMessage = await vscode.window.showInputBox({
+    placeHolder: "Enter a commit message...",
+  });
+
+  if (!commitMessage) {
+    vscode.window.showErrorMessage(
+      "Operation cancelled. Please enter a commit message!"
+    );
+    return;
+  }
+
+  if (asOrphan?.data) {
+    utils.executeCommands(
+      `git checkout --orphan wiki`,
+      `git add .`,
+      `git commit -m "${commitMessage}"`,
+      `git branch -D master`,
+      // `git push origin -D master`,
+      `git branch -m master`,
+      `git push -f origin master`
+    );
+  } else {
+    utils.executeCommands(
+      `git add .`,
+      `git commit -m "${commitMessage}"`,
+      `git push origin master`
+    );
+  }
 }
 
 export default [

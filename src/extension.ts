@@ -14,11 +14,14 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
     const repoFullName = config.get<string>("repoFullName");
+    // utils.executeCommands(
+    //   `git init -b main`,
+    //   `git remote add origin https://github.com/${repoFullName}.wiki.git`,
+    //   `git pull origin master`,
+    //   `git checkout --orphan wiki`
+    // );
     utils.executeCommands(
-      `git init -b main`,
-      `git remote add origin https://github.com/${repoFullName}.wiki.git`,
-      `git pull origin master`,
-      `git checkout --orphan wiki`
+      `git clone https://github.com/${repoFullName}.wiki.git .`,
     );
     vscode.window.showInformationMessage("Wiki workspace initialized!");
     vscode.window.showInformationMessage(
