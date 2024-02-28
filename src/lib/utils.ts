@@ -17,3 +17,17 @@ export function executeCommands(...commands: string[]) {
   terminal.show();
   commands.forEach((command) => terminal?.sendText(command));
 }
+
+export function createWorkspace(
+  folders: { name?: string | undefined; path: string }[],
+  settings: any | undefined = undefined,
+  extensionsRecommendations: string[] | undefined = undefined
+) {
+  return {
+    folders: folders,
+    extensions: {
+      recommendations: extensionsRecommendations,
+    },
+    settings,
+  };
+}

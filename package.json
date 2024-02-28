@@ -28,6 +28,10 @@
       {
         "command": "git-wiki-editor.publishWiki",
         "title": "Publish Wiki"
+      },
+      {
+        "command": "git-wiki-editor.cleanCache",
+        "title": "Clean Cache"
       }
     ],
     "configuration": {

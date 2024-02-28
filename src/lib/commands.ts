@@ -6,6 +6,7 @@ import * as github from "./github";
 import * as utils from "./utils";
 
 const config = vscode.workspace.getConfiguration("git-wiki-editor");
+const tempDir = path.join(os.tmpdir(), "git-wiki-editor");
 
 async function openWiki() {
   const username = await vscode.window.showInputBox({
@@ -35,8 +36,7 @@ async function openWiki() {
     return;
   }
   const wikiBasePath = path.join(
-    os.tmpdir(),
-    "git-wiki-editor",
+    tempDir,
     repo.name,
     utils.generateRandomString(8)
   );
@@ -45,13 +45,19 @@ async function openWiki() {
   fs.mkdirSync(wikiSourcePath, { recursive: true });
   fs.writeFileSync(
     wikiWorkspaceFilePath,
-    JSON.stringify({
-      folders: [{ path: "./wiki" }],
-      settings: {
-        "git-wiki-editor.isWikiWorkspace": true,
-        "git-wiki-editor.repoFullName": repo.full_name,
-      },
-    })
+    JSON.stringify(
+      utils.createWorkspace(
+        [{ path: "./wiki" }],
+        {
+          "git-wiki-editor.isWikiWorkspace": true,
+          "git-wiki-editor.repoFullName": repo.full_name,
+        },
+        [
+          "DavidAnson.vscode-markdownlint",
+          "bierner.markdown-preview-github-styles",
+        ]
+      )
+    )
   );
   await vscode.commands.executeCommand(
     "vscode.openFolder",
@@ -111,7 +117,19 @@ async function publishWiki() {
   }
 }
 
+function cleanCache() {
+  try {
+    fs.rmdirSync(tempDir, { recursive: true });
+    vscode.window.showInformationMessage("Cache cleaned!");
+  } catch {
+    vscode.window.showErrorMessage(
+      "Failed to clean cache! Try to close any wiki workspaces."
+    );
+  }
+}
+
 export default [
   vscode.commands.registerCommand("git-wiki-editor.openWiki", openWiki),
   vscode.commands.registerCommand("git-wiki-editor.publishWiki", publishWiki),
+  vscode.commands.registerCommand("git-wiki-editor.cleanCache", cleanCache),
 ];
