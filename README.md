@@ -1,6 +1,9 @@
-# Git Wiki Editor
+<h1>
+    <img src="public/icon.png" height="30"/>
+    <span>Git Wiki Editor</span>
+</h1>
 
-An easy way to edit wikis directly inside your editor!
+An easy way to edit wikis locally inside your editor!
 
 ## ⚙️ Features
 
