@@ -31,7 +31,7 @@
       },
       {
         "command": "git-wiki-editor.cleanCache",
-        "title": "Clean Cache"
+        "title": "Clean Wiki Cache"
       }
     ],
     "configuration": {
