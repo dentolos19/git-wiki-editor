@@ -1,28 +1,20 @@
-import * as os from "os";
-import * as path from "path";
 import * as vscode from "vscode";
-import cleanCacheFactory from "./commands/clean-cache";
-import initializeWikiFactory from "./commands/initialize-wiki";
-import openWikiFactory from "./commands/open-wiki";
-import publishWikiFactory from "./commands/publish-wiki";
-import { Environment } from "./environment";
-
-const env: Environment = {
-  config: vscode.workspace.getConfiguration("git-wiki-editor"),
-  tempDir: path.join(os.tmpdir(), "git-wiki-editor"),
-};
+import cleanCache from "./commands/clean-cache";
+import initializeWiki from "./commands/initialize-wiki";
+import openWiki from "./commands/open-wiki";
+import publishWiki from "./commands/publish-wiki";
+import environment from "./environment";
 
 export function activate(context: vscode.ExtensionContext) {
-  const openWiki = openWikiFactory(env);
-  const initializeWiki = initializeWikiFactory(env);
-  const publishWiki = publishWikiFactory(env);
-  const cleanCache = cleanCacheFactory(env);
+  // create commands
   [
     vscode.commands.registerCommand("git-wiki-editor.openWiki", openWiki),
     vscode.commands.registerCommand("git-wiki-editor.publishWiki", publishWiki),
     vscode.commands.registerCommand("git-wiki-editor.cleanCache", cleanCache),
   ].forEach((command) => context.subscriptions.push(command));
-  const isWikiWorkspace = env.config.get<boolean>("isWikiWorkspace", false);
+
+  // initialize wiki if the workspace is a wiki
+  const isWikiWorkspace = environment.config.get<boolean>("isWikiWorkspace", false);
   if (isWikiWorkspace) {
     initializeWiki();
   }

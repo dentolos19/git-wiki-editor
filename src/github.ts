@@ -3,6 +3,7 @@ export type Repo = {
   full_name: string;
   description: string;
   has_wiki: boolean;
+  archived: boolean;
 };
 
 export type User = {

@@ -1,13 +1,13 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
-import { Environment } from "../environment";
+import environment from "../environment";
 import * as utils from "../utils";
 
-export default function (env: Environment) {
-  return async function () {
-    const isWikiWorkspace = env.config.get<boolean>("isWikiWorkspace", false);
-    const repoFullName = env.config.get<string>("repoFullName");
+export default async function initializeWiki() {
+    // checks whether the current workspace is a valid wiki workspace
+    const isWikiWorkspace = environment.config.get<boolean>("isWikiWorkspace", false);
+    const repoFullName = environment.config.get<string>("repoFullName");
     if (!isWikiWorkspace) {
       return;
     }
@@ -16,6 +16,7 @@ export default function (env: Environment) {
       return;
     }
 
+    // checks whether the wiki is already initialized
     const wikiPath = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
     if (!wikiPath) {
       vscode.window.showErrorMessage("Unable to find the wiki path.");
@@ -25,9 +26,9 @@ export default function (env: Environment) {
       return;
     }
 
+    // initializes the wiki
     utils.executeCommands(
       `cd ${wikiPath}`,
-      `git clone https://github.com/${repoFullName}.wiki.git .`
+      `git clone https://github.com/${repoFullName}.git .`
     );
-  };
 }

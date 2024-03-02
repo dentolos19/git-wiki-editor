@@ -1,7 +1,7 @@
 {
   "name": "git-wiki-editor",
   "displayName": "Git Wiki Editor",
-  "description": "An easy way to edit wikis directly inside your editor!",
+  "description": "An easy way to quickly edit wikis directly inside your editor!",
   "publisher": "dentolos19",
   "version": "1.0.0",
   "icon": "public/icon.png",

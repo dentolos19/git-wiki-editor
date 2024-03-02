@@ -1,6 +1,6 @@
 # Git Wiki Editor
 
-An easy way to edit wikis locally inside your editor!
+An easy way to quickly edit wikis locally inside your editor!
 
 ## Features
 
