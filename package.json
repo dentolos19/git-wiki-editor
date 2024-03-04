@@ -37,13 +37,19 @@
     "configuration": {
       "title": "Git Wiki Editor",
       "properties": {
-        "git-wiki-editor.isWikiWorkspace": {
+        "git-wiki-editor.github.username": {
+          "type": "string",
+          "default": "",
+          "description": "The default GitHub username to use when searching for wikis."
+        },
+        "git-wiki-editor.workspace.isWikiWorkspace": {
           "type": "boolean",
           "default": false,
           "description": "Whether the current workspace is a wiki workspace. Do not set manually!"
         },
-        "git-wiki-editor.repoFullName": {
+        "git-wiki-editor.workspace.repoFullName": {
           "type": "string",
+          "default": "",
           "description": "The GitHub repository that the wiki belongs to. Do not set manually!"
         }
       }
@@ -57,7 +63,7 @@
     "test": "vscode-test",
     "pretest": "pnpm run compile && pnpm run lint",
     "pack": "pnpm vsce pack --no-dependencies --out extension.vsix",
-    "publish": "pnpm vsce publish --no-dependencies --out extension.vsix"
+    "publish": "pnpm vsce publish --no-dependencies"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",

@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
   ].forEach((command) => context.subscriptions.push(command));
 
   // initialize wiki if the workspace is a wiki
-  const isWikiWorkspace = environment.config.get<boolean>("isWikiWorkspace", false);
+  const isWikiWorkspace = environment.config.get<boolean>("workspace.isWikiWorkspace", false);
   if (isWikiWorkspace) {
     initializeWiki();
   }

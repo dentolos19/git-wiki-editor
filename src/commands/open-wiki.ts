@@ -3,14 +3,15 @@ import * as path from "path";
 import * as vscode from "vscode";
 import environment from "../environment";
 import * as github from "../github";
-import * as utils from "../utils";
 
 export default async function openWiki() {
   // ask for user's GitHub username
-  const username = await vscode.window.showInputBox({
-    placeHolder: "Enter a GitHub username...",
-  });
-
+  let username = environment.config.get<string>("github.username");
+  if (!username) {
+    username = await vscode.window.showInputBox({
+      placeHolder: "Enter a GitHub username...",
+    });
+  }
   if (!username) {
     return;
   }
@@ -41,13 +42,36 @@ export default async function openWiki() {
     return;
   }
 
-  const wikiBasePath = path.join(
-    environment.tempDir,
-    repo.name,
-    utils.generateRandomString(8)
-  );
+  const wikiBasePath = path.join(environment.tempDir, repo.full_name);
   const wikiSourcePath = path.join(wikiBasePath, "wiki");
   const wikiWorkspacePath = path.join(wikiBasePath, "wiki.code-workspace");
+
+  // checks if wiki already exists
+  if (fs.existsSync(wikiWorkspacePath)) {
+    const newWorkspace = await vscode.window
+      .showInformationMessage(
+        "A wiki workspace already exists. Do you want to open it or create a new one?",
+        "Open",
+        "New"
+      )
+      .then(async (value) => {
+        if (value === "New") {
+          return true;
+        }
+        return false;
+      });
+    if (newWorkspace) {
+      // delete existing wiki workspace
+      fs.rmdirSync(wikiBasePath, { recursive: true });
+    } else {
+      // open existing wiki workspace
+      await vscode.commands.executeCommand(
+        "vscode.openFolder",
+        vscode.Uri.file(wikiWorkspacePath)
+      );
+      return;
+    }
+  }
 
   // create wiki workspace
   fs.mkdirSync(wikiSourcePath, { recursive: true });
@@ -61,8 +85,8 @@ export default async function openWiki() {
         },
       ],
       settings: {
-        "git-wiki-editor.isWikiWorkspace": true,
-        "git-wiki-editor.repoFullName": `${repo.full_name}.wiki`,
+        "git-wiki-editor.workspace.isWikiWorkspace": true,
+        "git-wiki-editor.workspace.repoFullName": `${repo.full_name}.wiki`,
       },
       extensions: {
         recommendations: [

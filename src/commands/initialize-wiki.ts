@@ -6,8 +6,8 @@ import * as utils from "../utils";
 
 export default async function initializeWiki() {
     // checks whether the current workspace is a valid wiki workspace
-    const isWikiWorkspace = environment.config.get<boolean>("isWikiWorkspace", false);
-    const repoFullName = environment.config.get<string>("repoFullName");
+    const isWikiWorkspace = environment.config.get<boolean>("workspace.isWikiWorkspace", false);
+    const repoFullName = environment.config.get<string>("workspace.repoFullName");
     if (!isWikiWorkspace) {
       return;
     }
