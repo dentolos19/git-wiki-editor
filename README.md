@@ -1,5 +1,7 @@
 # Git Wiki Editor
 
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/dentolos19.git-wiki-editor?logo=visual%20studio&label=marketplace)](https://marketplace.visualstudio.com/items?itemName=dentolos19.git-wiki-editor)
+
 An easy way to quickly edit wikis locally inside your editor!
 
 **What is my rationale of making this extension?** I want to edit my projects' wiki quickly and easily right inside my editor just by running commands instead of typing commands manually inside the terminal. There wasn't any specialized extensions for editing GitHub wikis and extensions like [Remote Repositories](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-repositories) doesn't allow you to remotely access them as well.
