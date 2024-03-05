@@ -2,11 +2,9 @@
 
 All notable changes to this extension will be documented in this file.
 
-## [Unreleased]
+## [1.1.0] - 2024-03-05
 
-- Added GitHub authentication
-- Added categories for commands
-- Changed visuals of quick pick menu (e.g. opening wiki, choosing mode of commit)
+The changes for this version is documented [here](https://github.com/dentolos19/git-wiki-editor/releases/tag/v1.1.0).
 
 ## [1.0.0] - 2024-03-04
 

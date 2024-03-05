@@ -2,7 +2,7 @@
   "name": "git-wiki-editor",
   "displayName": "Git Wiki Editor",
   "description": "An easy way to quickly edit wikis locally inside your editor!",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "icon": "public/icon.png",
   "publisher": "dentolos19",
   "repository": {
