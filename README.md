@@ -1,6 +1,7 @@
 # Git Wiki Editor
 
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/dentolos19.git-wiki-editor?logo=visual%20studio&label=marketplace)](https://marketplace.visualstudio.com/items?itemName=dentolos19.git-wiki-editor)
+[![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/dentolos19.git-wiki-editor)](https://marketplace.visualstudio.com/items?itemName=dentolos19.git-wiki-editor)
 
 An easy way to quickly edit wikis locally inside your editor!
 
@@ -28,14 +29,15 @@ Contributions are what make the open source community such an amazing place to l
 
 ### Prerequisites
 
-- [VSCode](https://code.visualstudio.com) 1.86+
+- [Node.js](https://nodejs.org) 18+
 - [pnpm](https://pnpm.io) 8+
+- [Visual Studio Code](https://code.visualstudio.com) 1.87+
 
 ### Installation
 
 1. Clone the repo: `git clone https://github.com/dentolos19/git-wiki-editor.git`
-2. Install required dependencies: `pnpm install`
-3. Open project in VSCode: `code .`
+2. Install the dependencies: `pnpm install`
+3. Open the project: `code .`
 4. Run the extension: <kbd>F5</kbd>
 
 ## Credits
