@@ -54,7 +54,7 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "esbuild ./src/extension.ts --bundle --outfile=./out/main.js --format=cjs --platform=node --external:vscode --minify",
+    "vscode:prepublish": "esbuild ./src/extension.ts --bundle --outfile=./out/extension.js --format=cjs --platform=node --external:vscode --minify",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",

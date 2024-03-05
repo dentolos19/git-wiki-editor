@@ -3,13 +3,13 @@ import * as path from "path";
 import * as vscode from "vscode";
 import { Environment } from "../extension";
 import {
-    executeShellCommands,
-    executeTerminalCommands,
-    matchRepoFullName,
+  executeShellCommands,
+  executeTerminalCommands,
+  matchRepoFullName,
 } from "../utils";
 
 export default async function publishWiki(env: Environment) {
-  // check if the current workspace is a valid wiki workspace
+  // Check if the current workspace is a valid wiki workspace
   const isWikiWorkspace = env.config.get<boolean>(
     "workspace.isWikiWorkspace",
     false
@@ -29,13 +29,13 @@ export default async function publishWiki(env: Environment) {
     return;
   }
 
-  // check if the wiki is initialized
+  // Check if the wiki is initialized
   if (!fs.existsSync(path.join(wikiPath, ".git"))) {
     vscode.window.showErrorMessage("Please initialize the wiki first!");
     return;
   }
 
-  // gets the remote repo's full name
+  // Get remote repo's full name
   const remoteRepoFullName = await executeShellCommands(
     `cd ${wikiPath}`,
     `git remote -v`
@@ -50,7 +50,7 @@ export default async function publishWiki(env: Environment) {
     return;
   }
 
-  // checks if the local git origin matches the wiki's remote
+  // Check if the local origin matches the wiki's remote
   if (remoteRepoFullName !== repoFullName) {
     vscode.window.showErrorMessage(
       "The git origin does not match the wiki's remote."
@@ -58,24 +58,28 @@ export default async function publishWiki(env: Environment) {
     return;
   }
 
-  // ask for the mode of commit
+  // Ask user for the mode of commit
   const orphanCommit = (
     await vscode.window.showQuickPick([
       {
-        label: "Push as a new commit (recommended)",
-        description: "Push your changes as per normal.",
+        label: "Push changes as a new commit",
+        description: "Recommended",
+        detail: "Push your changes as a new commit, as per normal.",
+        iconPath: new vscode.ThemeIcon("git-commit"),
         data: false,
       },
       {
-        label: "Push as a orphaned commit",
-        description:
+        label: "Push changes as a orphaned commit",
+        description: "Advanced",
+        detail:
           "Sqush all your changes including your history into one commit.",
+        iconPath: new vscode.ThemeIcon("git-pull-request"),
         data: true,
       },
     ])
   )?.data;
 
-  // ask user to enter a commit message
+  // Ask user to input a commit message
   const commitMessage = await vscode.window.showInputBox({
     placeHolder: "Enter a commit message...",
   });
@@ -86,10 +90,10 @@ export default async function publishWiki(env: Environment) {
     return;
   }
 
-  // push the changes to the wiki
+  // Push the changes to the wiki
   executeTerminalCommands(`cd ${wikiPath}`);
   if (orphanCommit) {
-    // push as a orphaned commit
+    // Push changes as a orphaned commit
     executeTerminalCommands(
       `git checkout --orphan wiki`,
       `git add .`,
@@ -100,7 +104,7 @@ export default async function publishWiki(env: Environment) {
       `git push -f origin master`
     );
   } else {
-    // push as a new commit
+    // Push changes as a new commit
     executeTerminalCommands(
       `git add .`,
       `git commit -m "${commitMessage}"`,

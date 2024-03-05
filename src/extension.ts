@@ -12,13 +12,13 @@ export type Environment = {
 };
 
 export function activate(context: vscode.ExtensionContext) {
-  // initialize environment
+  // Initialize environment
   const env: Environment = {
     config: vscode.workspace.getConfiguration("git-wiki-editor"),
     tempDir: path.join(os.tmpdir(), "git-wiki-editor"),
   };
 
-  // initialize commands
+  // Initialize commands
   [
     vscode.commands.registerCommand("git-wiki-editor.openWiki", () =>
       openWiki(env)
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
     ),
   ].forEach((command) => context.subscriptions.push(command));
 
-  // check if the current workspace is a wiki
+  // Check if the current workspace is a wiki workspace
   if (env.config.get<boolean>("workspace.isWikiWorkspace")) {
     initializeWiki(env);
   }

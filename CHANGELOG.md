@@ -4,8 +4,9 @@ All notable changes to this extension will be documented in this file.
 
 ## [Unreleased]
 
-- Add GitHub authentication
-- Change repo description to detail in quick pick
+- Added GitHub authentication
+- Added categories for commands
+- Changed visuals of quick pick menu (e.g. opening wiki, choosing mode of commit)
 
 ## [1.0.0] - 2024-03-04
 

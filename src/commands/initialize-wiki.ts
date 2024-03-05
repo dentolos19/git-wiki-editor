@@ -5,7 +5,7 @@ import { Environment } from "../extension";
 import { executeTerminalCommands } from "../utils";
 
 export default function initializeWiki(env: Environment) {
-  // checks if the workspace is a valid wiki workspace
+  // Checks if the current workspace is a valid wiki workspace
   const isWikiWorkspace = env.config.get<boolean>("workspace.isWikiWorkspace");
   const repoFullName = env.config.get<string>("workspace.repoFullName");
   if (!isWikiWorkspace) {
@@ -16,7 +16,7 @@ export default function initializeWiki(env: Environment) {
     return;
   }
 
-  // checks if the wiki is already initialized
+  // Checks if the wiki is already initialized
   const wikiPath = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
   if (!wikiPath) {
     vscode.window.showErrorMessage("Unable to find the wiki path.");
@@ -26,7 +26,7 @@ export default function initializeWiki(env: Environment) {
     return;
   }
 
-  // initialize wiki
+  // Initializes the wiki
   executeTerminalCommands(
     `cd ${wikiPath}`,
     `git clone https://github.com/${repoFullName}.git .`
