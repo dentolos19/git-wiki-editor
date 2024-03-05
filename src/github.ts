@@ -1,24 +1,41 @@
-export type Repo = {
-  name: string;
-  full_name: string;
-  description: string;
-  has_wiki: boolean;
-  archived: boolean;
-};
+import { Octokit } from "octokit";
 
-export type User = {
-  login: string;
-  html_url: string;
-};
+class GitHub {
+  octokit: Octokit;
 
-export function getAuthenticatedUser(token: string) {
-  return fetch("https://api.github.com/user", {})
-    .then((res) => res.json())
-    .then((user) => user as User);
+  constructor() {
+    this.octokit = new Octokit();
+  }
+
+  updateToken(accessToken?: string) {
+    if (accessToken) {
+      this.octokit = new Octokit({
+        auth: accessToken,
+      });
+    } else {
+      this.octokit = new Octokit();
+    }
+  }
+
+  async getUserRepos() {
+    const user = await this.octokit.request("GET /user/repos", {
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    });
+    return user.data as {
+      name: string;
+      full_name: string;
+      private: boolean
+      html_url: string;
+      description: string;
+      fork: boolean;
+      has_wiki: boolean;
+      archived: boolean;
+    }[];
+  }
 }
 
-export function getRepos(username: string) {
-  return fetch(`https://api.github.com/users/${username}/repos`, {})
-    .then((res) => res.json())
-    .then((repos) => repos as Repo[]);
-}
+const github = new GitHub();
+
+export default github;

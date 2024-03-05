@@ -1,22 +1,40 @@
+import * as os from "os";
+import * as path from "path";
 import * as vscode from "vscode";
 import cleanCache from "./commands/clean-cache";
 import initializeWiki from "./commands/initialize-wiki";
 import openWiki from "./commands/open-wiki";
 import publishWiki from "./commands/publish-wiki";
-import environment from "./environment";
+
+export type Environment = {
+  config: vscode.WorkspaceConfiguration;
+  tempDir: string;
+};
 
 export function activate(context: vscode.ExtensionContext) {
-  // create commands
+  // initialize environment
+  const env: Environment = {
+    config: vscode.workspace.getConfiguration("git-wiki-editor"),
+    tempDir: path.join(os.tmpdir(), "git-wiki-editor"),
+  };
+
+  // initialize commands
   [
-    vscode.commands.registerCommand("git-wiki-editor.openWiki", openWiki),
-    vscode.commands.registerCommand("git-wiki-editor.publishWiki", publishWiki),
-    vscode.commands.registerCommand("git-wiki-editor.cleanCache", cleanCache),
+    vscode.commands.registerCommand("git-wiki-editor.openWiki", () =>
+      openWiki(env)
+    ),
+    vscode.commands.registerCommand("git-wiki-editor.publishWiki", () =>
+      publishWiki(env)
+    ),
+    vscode.commands.registerCommand("git-wiki-editor.cleanCache", () =>
+      cleanCache(env)
+    ),
   ].forEach((command) => context.subscriptions.push(command));
 
-  // initialize wiki if the workspace is a wiki
-  const isWikiWorkspace = environment.config.get<boolean>("workspace.isWikiWorkspace", false);
-  if (isWikiWorkspace) {
-    initializeWiki();
+  // check if the current workspace is a wiki
+  if (env.config.get<boolean>("workspace.isWikiWorkspace")) {
+    initializeWiki(env);
   }
 }
+
 export function deactivate() {}

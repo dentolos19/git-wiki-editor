@@ -1,19 +1,18 @@
 import * as fs from "fs";
 import * as vscode from "vscode";
-import environment from "../environment";
+import { Environment } from "../extension";
 
-export default async function cleanCache() {
-  if (fs.existsSync(environment.tempDir)) {
+export default function cleanCache(env: Environment) {
+  if (fs.existsSync(env.tempDir)) {
     try {
-      fs.rmdirSync(environment.tempDir, { recursive: true });
+      fs.rmSync(env.tempDir, { recursive: true });
+      vscode.window.showInformationMessage("Cache cleaned successfully!");
     } catch {
       vscode.window.showErrorMessage(
-        "Failed to clean cache. Close any open wiki workspaces and try again."
+        "Failed to clean cache! Try to close any open wiki workspaces."
       );
-      return;
     }
-    vscode.window.showInformationMessage("Cache cleaned successfully.");
   } else {
-    vscode.window.showInformationMessage("Cache is already clean.");
+    vscode.window.showInformationMessage("Cache is already clean!");
   }
 }

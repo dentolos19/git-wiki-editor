@@ -1,16 +1,7 @@
 import * as cp from "child_process";
 import * as vscode from "vscode";
 
-export function generateRandomString(length: number) {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  return Array.from(
-    { length },
-    () => characters[Math.floor(Math.random() * characters.length)]
-  ).join("");
-}
-
-export function executeCommands(...commands: string[]) {
+export function executeTerminalCommands(...commands: string[]) {
   let terminal = vscode.window.activeTerminal;
   if (!terminal) {
     terminal = vscode.window.createTerminal();
@@ -19,9 +10,9 @@ export function executeCommands(...commands: string[]) {
   commands.forEach((command) => terminal?.sendText(command));
 }
 
-export function executeShellCommands(command: string) {
+export function executeShellCommands(...commands: string[]) {
   return new Promise<string>((resolve, reject) => {
-    cp.exec(command, (err, stdout, stderr) => {
+    cp.exec(commands.join(" && "), (err, stdout, _) => {
       if (err) {
         reject(err);
       }

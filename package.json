@@ -1,16 +1,16 @@
 {
   "name": "git-wiki-editor",
   "displayName": "Git Wiki Editor",
-  "description": "An easy way to quickly edit wikis directly inside your editor!",
-  "publisher": "dentolos19",
-  "version": "1.0.0",
+  "description": "An easy way to quickly edit wikis locally inside your editor!",
+  "version": "1.0.1",
   "icon": "public/icon.png",
+  "publisher": "dentolos19",
   "repository": {
     "type": "git",
     "url": "https://github.com/dentolos19/git-wiki-editor.git"
   },
   "engines": {
-    "vscode": "^1.86.0"
+    "vscode": "^1.87.0"
   },
   "categories": [
     "Other"
@@ -23,25 +23,23 @@
     "commands": [
       {
         "command": "git-wiki-editor.openWiki",
+        "category": "Git Wiki Editor",
         "title": "Open Wiki"
       },
       {
         "command": "git-wiki-editor.publishWiki",
+        "category": "Git Wiki Editor",
         "title": "Publish Wiki"
       },
       {
         "command": "git-wiki-editor.cleanCache",
-        "title": "Clean Wiki Cache"
+        "category": "Git Wiki Editor",
+        "title": "Clean Cache"
       }
     ],
     "configuration": {
       "title": "Git Wiki Editor",
       "properties": {
-        "git-wiki-editor.github.username": {
-          "type": "string",
-          "default": "",
-          "description": "The default GitHub username to use when searching for wikis."
-        },
         "git-wiki-editor.workspace.isWikiWorkspace": {
           "type": "boolean",
           "default": false,
@@ -59,16 +57,18 @@
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "pretest": "pnpm run compile && pnpm run lint",
-    "pack": "pnpm vsce pack --no-dependencies --out extension.vsix",
-    "publish": "pnpm vsce publish --no-dependencies"
+    "pack": "pnpm vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "octokit": "^3.1.2"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
-    "@types/vscode": "^1.86.0",
+    "@types/vscode": "^1.87.0",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vscode/test-cli": "^0.0.6",
