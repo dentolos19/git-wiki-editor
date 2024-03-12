@@ -1,5 +1,5 @@
 <h1>
-    <img src="public/icon.png" height="30">
+    <img src="public/icon.png" alt="Icon" height="30">
     <span>Git Wiki Editor</span>
 </h1>
 
@@ -39,7 +39,7 @@ Contributions are what make the open source community such an amazing place to l
 ### Installation
 
 1. Clone the repo: `git clone https://github.com/dentolos19/git-wiki-editor.git`
-2. Install the dependencies: `pnpm install`
+2. Install dependencies: `pnpm install`
 3. Open the project: `code .`
 4. Run the extension: <kbd>F5</kbd>
 

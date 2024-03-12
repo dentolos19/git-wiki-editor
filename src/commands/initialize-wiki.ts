@@ -1,7 +1,7 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 import * as vscode from "vscode";
-import { Environment } from "../extension";
+import type { Environment } from "../extension";
 import { executeTerminalCommands } from "../utils";
 
 export default function initializeWiki(env: Environment) {

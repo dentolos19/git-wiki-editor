@@ -1,6 +1,6 @@
-import * as fs from "fs";
+import * as fs from "node:fs";
 import * as vscode from "vscode";
-import { Environment } from "../extension";
+import type { Environment } from "../extension";
 
 export default function cleanCache(env: Environment) {
   if (fs.existsSync(env.tempDir)) {

@@ -1,7 +1,7 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 import * as vscode from "vscode";
-import { Environment } from "../extension";
+import type { Environment } from "../extension";
 import {
   executeShellCommands,
   executeTerminalCommands,
@@ -38,7 +38,7 @@ export default async function publishWiki(env: Environment) {
   // Get remote repo's full name
   const remoteRepoFullName = await executeShellCommands(
     `cd ${wikiPath}`,
-    `git remote -v`
+    "git remote -v"
   ).then(
     (result) => matchRepoFullName(result),
     (_) => undefined
@@ -95,20 +95,20 @@ export default async function publishWiki(env: Environment) {
   if (orphanCommit) {
     // Push changes as a orphaned commit
     executeTerminalCommands(
-      `git checkout --orphan wiki`,
-      `git add .`,
+      "git checkout --orphan wiki",
+      "git add .",
       `git commit -m "${commitMessage}"`,
-      `git branch -D master`,
+      "git branch -D master",
       // `git push origin -D master`,
-      `git branch -m master`,
-      `git push -f origin master`
+      "git branch -m master",
+      "git push -f origin master"
     );
   } else {
     // Push changes as a new commit
     executeTerminalCommands(
-      `git add .`,
+      "git add .",
       `git commit -m "${commitMessage}"`,
-      `git push origin master`
+      "git push origin master"
     );
   }
 

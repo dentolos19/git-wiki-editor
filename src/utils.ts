@@ -1,4 +1,4 @@
-import * as cp from "child_process";
+import * as cp from "node:child_process";
 import * as vscode from "vscode";
 
 export function executeTerminalCommands(...commands: string[]) {
@@ -7,7 +7,9 @@ export function executeTerminalCommands(...commands: string[]) {
     terminal = vscode.window.createTerminal();
   }
   terminal.show();
-  commands.forEach((command) => terminal?.sendText(command));
+  for (const command of commands) {
+    terminal.sendText(command);
+  }
 }
 
 export function executeShellCommands(...commands: string[]) {
