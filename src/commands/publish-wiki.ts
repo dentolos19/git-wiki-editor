@@ -3,18 +3,18 @@ import * as path from "node:path";
 import * as vscode from "vscode";
 import type { Environment } from "../extension";
 import {
-	executeShellCommands,
-	executeTerminalCommands,
-	matchRepoFullName,
+    executeShellCommands,
+    executeTerminalCommands,
+    matchRepoFullName,
 } from "../utils";
 
 export default async function publishWiki(env: Environment) {
 	// Check if the current workspace is a valid wiki workspace
-	const isWikiWorkspace = env.config.get<boolean>(
+	const isWikiWorkspace = env.configuration.get<boolean>(
 		"workspace.isWikiWorkspace",
 		false,
 	);
-	const repoFullName = env.config.get<string>("workspace.repoFullName");
+	const repoFullName = env.configuration.get<string>("workspace.repoFullName");
 	if (!isWikiWorkspace) {
 		vscode.window.showErrorMessage("Please open a wiki first!");
 		return;

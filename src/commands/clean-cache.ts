@@ -3,9 +3,9 @@ import * as vscode from "vscode";
 import type { Environment } from "../extension";
 
 export default function cleanCache(env: Environment) {
-	if (fs.existsSync(env.tempDir)) {
+	if (fs.existsSync(env.wikiStorePath)) {
 		try {
-			fs.rmSync(env.tempDir, { recursive: true });
+			fs.rmSync(env.wikiStorePath, { recursive: true });
 			vscode.window.showInformationMessage("Cache cleaned successfully!");
 		} catch {
 			vscode.window.showErrorMessage(

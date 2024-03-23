@@ -6,8 +6,8 @@ import { executeTerminalCommands } from "../utils";
 
 export default function initializeWiki(env: Environment) {
 	// Checks if the current workspace is a valid wiki workspace
-	const isWikiWorkspace = env.config.get<boolean>("workspace.isWikiWorkspace");
-	const repoFullName = env.config.get<string>("workspace.repoFullName");
+	const isWikiWorkspace = env.configuration.get<boolean>("workspace.isWikiWorkspace");
+	const repoFullName = env.configuration.get<string>("workspace.repoFullName");
 	if (!isWikiWorkspace) {
 		return;
 	}

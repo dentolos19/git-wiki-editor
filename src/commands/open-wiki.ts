@@ -39,7 +39,7 @@ export default async function openWiki(env: Environment) {
 		return;
 	}
 
-	const wikiBasePath = path.join(env.tempDir, repo.full_name);
+	const wikiBasePath = path.join(env.wikiStorePath, repo.full_name);
 	const wikiSourcePath = path.join(wikiBasePath, "wiki");
 	const wikiWorkspacePath = path.join(wikiBasePath, "wiki.code-workspace");
 

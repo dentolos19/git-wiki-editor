@@ -1,4 +1,3 @@
-import * as os from "node:os";
 import * as path from "node:path";
 import * as vscode from "vscode";
 import cleanCache from "./commands/clean-cache";
@@ -7,15 +6,18 @@ import openWiki from "./commands/open-wiki";
 import publishWiki from "./commands/publish-wiki";
 
 export type Environment = {
-	config: vscode.WorkspaceConfiguration;
-	tempDir: string;
+	configuration: vscode.WorkspaceConfiguration;
+	tempStorePath: string;
+	wikiStorePath: string;
 };
 
 export function activate(context: vscode.ExtensionContext) {
 	// Initialize environment
+	const globalStorePath = context.globalStorageUri.fsPath;
 	const env: Environment = {
-		config: vscode.workspace.getConfiguration("git-wiki-editor"),
-		tempDir: path.join(os.tmpdir(), "git-wiki-editor"),
+		configuration: vscode.workspace.getConfiguration("git-wiki-editor"),
+		tempStorePath: path.join(globalStorePath, "temp"),
+		wikiStorePath: path.join(globalStorePath, "wikis"),
 	};
 
 	// Initialize commands
@@ -34,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	// Check if the current workspace is a wiki workspace
-	if (env.config.get<boolean>("workspace.isWikiWorkspace")) {
+	if (env.configuration.get<boolean>("workspace.isWikiWorkspace")) {
 		initializeWiki(env);
 	}
 }

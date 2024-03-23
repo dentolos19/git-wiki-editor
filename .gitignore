@@ -1,5 +1,16 @@
-out
-dist
-node_modules
+# Environment files
+node_modules/
+
+# Output files
+out/
+build/
+dist/
+
+# Output files: VSCode Extension Development
 .vscode-test/
 *.vsix
+
+# Miscellaneous files
+.DS_Store
+Desktop.ini
+Thumbs.db
