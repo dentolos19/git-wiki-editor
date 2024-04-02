@@ -44,7 +44,7 @@ Contributions are what make the open source community such an amazing place to l
 
 ## 💖 Credits
 
-- Icon by [icon wind](https://flaticon.com/free-icon/path_9534017)
+- Icon by [Freepik](https://flaticon.com/free-icon/wikipedia_326979)
 
 ## 📜 License
 
