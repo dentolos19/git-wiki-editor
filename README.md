@@ -23,7 +23,6 @@ To get started, go check out [the wiki](https://github.com/dentolos19/git-wiki-e
 ### Roadmap
 
 - [ ] Support GitLab, CodeBerg and Azure DevOps (need help)
-- [x] Has the ability to edit user's private repos' wiki
 - [ ] Designate special repositories (e.g. `dentolos19/dentolos19`) as a hub for the user's knowledgebase
 
 ## 🧑‍💻 Contributing
