@@ -2,25 +2,25 @@ import * as cp from "node:child_process";
 import * as vscode from "vscode";
 
 export function executeTerminalCommands(...commands: string[]) {
-	let terminal = vscode.window.activeTerminal;
-	if (!terminal) {
-		terminal = vscode.window.createTerminal();
-	}
-	terminal.show();
-	for (const command of commands) {
-		terminal.sendText(command);
-	}
+  let terminal = vscode.window.activeTerminal;
+  if (!terminal) {
+    terminal = vscode.window.createTerminal();
+  }
+  terminal.show();
+  for (const command of commands) {
+    terminal.sendText(command);
+  }
 }
 
 export function executeShellCommands(...commands: string[]) {
-	return new Promise<string>((resolve, reject) => {
-		cp.exec(commands.join(" && "), (err, stdout, _) => {
-			if (err) {
-				reject(err);
-			}
-			resolve(stdout);
-		});
-	});
+  return new Promise<string>((resolve, reject) => {
+    cp.exec(commands.join(" && "), (err, stdout, _) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(stdout);
+    });
+  });
 }
 
 // Example:
@@ -30,9 +30,9 @@ export function executeShellCommands(...commands: string[]) {
 // Output:
 //   dentolos19/git-wiki-test.wiki
 export function matchRepoFullName(url: string) {
-	const match = url.match(/https:\/\/github\.com\/(.*\/.*)\.git \(push\)/);
-	if (!match) {
-		return;
-	}
-	return match[1];
+  const match = url.match(/https:\/\/github\.com\/(.*\/.*)\.git \(push\)/);
+  if (!match) {
+    return;
+  }
+  return match[1];
 }

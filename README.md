@@ -1,6 +1,6 @@
 <h1>
-    <img src="public/icon.png" alt="Icon" height="30">
-    <span>Git Wiki Editor</span>
+  <img src="public/icon.png" alt="Icon" height="30" />
+  <span>Git Wiki Editor</span>
 </h1>
 
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/dentolos19.git-wiki-editor?logo=visual%20studio&label=marketplace)](https://marketplace.visualstudio.com/items?itemName=dentolos19.git-wiki-editor)
@@ -17,13 +17,13 @@ To get started, go check out [the wiki](https://github.com/dentolos19/git-wiki-e
 ## ⚙️ Features
 
 - [x] Supports GitHub
-- [x] Able to clone wiki in isolation (stored in temp folder)
-- [x] Allows you to commit either as a new commit or a single (orphaned) commit
+- [x] Able to clone wiki in isolation
+- [x] Able to customize your commit
 
 ### Roadmap
 
 - [ ] Support GitLab, CodeBerg and Azure DevOps (need help)
-- [ ] Designate special repositories (e.g. `dentolos19/dentolos19`) as a hub for the user's knowledgebase
+- [ ] Designate special repositories (e.g., `dentolos19/dentolos19`) as a hub for the user's knowledgebase
 
 ## 🧑‍💻 Contributing
 
@@ -31,13 +31,13 @@ Contributions are what make the open source community such an amazing place to l
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org) 18+
-- [pnpm](https://pnpm.io) 8+
-- [Visual Studio Code](https://code.visualstudio.com) 1.87+
+- [Node.js](https://nodejs.org) 20+
+- [pnpm](https://pnpm.io) 9+
+- [Visual Studio Code](https://code.visualstudio.com) 1.92+
 
 ### Installation
 
-1. Clone the repo: `git clone https://github.com/dentolos19/git-wiki-editor.git`
+1. Clone this repository: `git clone https://github.com/dentolos19/git-wiki-editor.git`
 2. Install dependencies: `pnpm install`
 3. Open the project: `code .`
 4. Run the extension: <kbd>F5</kbd>
@@ -48,4 +48,4 @@ Contributions are what make the open source community such an amazing place to l
 
 ## 📜 License
 
-Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.

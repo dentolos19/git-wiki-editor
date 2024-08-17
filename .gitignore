@@ -2,9 +2,9 @@
 node_modules/
 
 # Output files
-out/
 build/
 dist/
+out/
 
 # Output files: VSCode Extension Development
 .vscode-test/
