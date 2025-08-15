@@ -1,10 +1,10 @@
 <h1>
   <img src="public/icon.png" alt="Icon" height="30" />
-  <span>Git Wiki Editor</span>
+  <span>Wiki Editor</span>
 </h1>
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/dentolos19.git-wiki-editor?logo=visual%20studio&label=marketplace)](https://marketplace.visualstudio.com/items?itemName=dentolos19.git-wiki-editor)
-[![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/dentolos19.git-wiki-editor)](https://marketplace.visualstudio.com/items?itemName=dentolos19.git-wiki-editor)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/dentolos19.wiki-editor?logo=visual%20studio&label=marketplace)](https://marketplace.visualstudio.com/items?itemName=dentolos19.wiki-editor)
+[![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/dentolos19.wiki-editor)](https://marketplace.visualstudio.com/items?itemName=dentolos19.wiki-editor)
 
 An easy way to quickly edit wikis locally inside your editor!
 
@@ -12,7 +12,7 @@ An easy way to quickly edit wikis locally inside your editor!
 
 ## ⚒️ Usage
 
-To get started, go check out [the wiki](https://github.com/dentolos19/git-wiki-editor/wiki) to learn how to use this extension.
+To get started, go check out [the wiki](https://github.com/dentolos19/wiki-editor/wiki) to learn how to use this extension.
 
 ## ⚙️ Features
 
@@ -37,7 +37,7 @@ Contributions are what make the open source community such an amazing place to l
 
 ### Installation
 
-1. Clone this repository: `git clone https://github.com/dentolos19/git-wiki-editor.git`
+1. Clone this repository: `git clone https://github.com/dentolos19/wiki-editor.git`
 2. Install dependencies: `pnpm install`
 3. Open the project: `code .`
 4. Run the extension: <kbd>F5</kbd>

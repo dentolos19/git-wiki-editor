@@ -15,16 +15,16 @@ export function activate(context: vscode.ExtensionContext) {
   // Initialize environment
   const globalStorePath = context.globalStorageUri.fsPath;
   const env: Environment = {
-    configuration: vscode.workspace.getConfiguration("git-wiki-editor"),
+    configuration: vscode.workspace.getConfiguration("wiki-editor"),
     tempStorePath: path.join(globalStorePath, "temp"),
     wikiStorePath: path.join(globalStorePath, "wikis"),
   };
 
   // Initialize commands
   for (const command of [
-    vscode.commands.registerCommand("git-wiki-editor.openWiki", () => openWiki(env)),
-    vscode.commands.registerCommand("git-wiki-editor.publishWiki", () => publishWiki(env)),
-    vscode.commands.registerCommand("git-wiki-editor.cleanCache", () => cleanCache(env)),
+    vscode.commands.registerCommand("wiki-editor.openWiki", () => openWiki(env)),
+    vscode.commands.registerCommand("wiki-editor.publishWiki", () => publishWiki(env)),
+    vscode.commands.registerCommand("wiki-editor.cleanCache", () => cleanCache(env)),
   ]) {
     context.subscriptions.push(command);
   }

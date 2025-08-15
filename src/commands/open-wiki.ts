@@ -71,8 +71,8 @@ export default async function openWiki(env: Environment) {
         },
       ],
       settings: {
-        "git-wiki-editor.workspace.isWikiWorkspace": true,
-        "git-wiki-editor.workspace.repoFullName": `${repo.full_name}.wiki`,
+        "wiki-editor.workspace.isWikiWorkspace": true,
+        "wiki-editor.workspace.repoFullName": `${repo.full_name}.wiki`,
       },
       extensions: {
         recommendations: ["DavidAnson.vscode-markdownlint", "bierner.markdown-preview-github-styles"],

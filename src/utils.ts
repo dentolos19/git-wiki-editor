@@ -24,11 +24,11 @@ export function executeShellCommands(...commands: string[]) {
 }
 
 // Example:
-//   origin	https://github.com/dentolos19/git-wiki-test.wiki.git (fetch)
-//   origin	https://github.com/dentolos19/git-wiki-test.wiki.git (push)
+//   origin	https://github.com/dentolos19/wiki-editor.wiki.git (fetch)
+//   origin	https://github.com/dentolos19/wiki-editor.wiki.git (push)
 //
 // Output:
-//   dentolos19/git-wiki-test.wiki
+//   dentolos19/wiki-editor.wiki
 export function matchRepoFullName(url: string) {
   const match = url.match(/https:\/\/github\.com\/(.*\/.*)\.git \(push\)/);
   if (!match) {
