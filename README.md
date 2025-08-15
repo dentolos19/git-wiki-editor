@@ -32,13 +32,12 @@ Contributions are what make the open source community such an amazing place to l
 ### Prerequisites
 
 - [Node.js](https://nodejs.org) 20+
-- [pnpm](https://pnpm.io) 9+
-- [Visual Studio Code](https://code.visualstudio.com) 1.92+
+- [Visual Studio Code](https://code.visualstudio.com) 1.103+
 
 ### Installation
 
 1. Clone this repository: `git clone https://github.com/dentolos19/wiki-editor.git`
-2. Install dependencies: `pnpm install`
+2. Install dependencies: `npm install`
 3. Open the project: `code .`
 4. Run the extension: <kbd>F5</kbd>
 

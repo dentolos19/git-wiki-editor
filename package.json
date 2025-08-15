@@ -11,7 +11,7 @@
     "url": "https://github.com/dentolos19/wiki-editor.git"
   },
   "engines": {
-    "vscode": "^1.92.0"
+    "vscode": "^1.103.0"
   },
   "categories": [
     "Other"
@@ -55,12 +55,12 @@
   },
   "scripts": {
     "vscode:prepublish": "esbuild src/extension.ts --bundle --outfile=out/extension.js --format=cjs --platform=node --external:vscode --minify",
-    "pretest": "pnpm run compile && pnpm run lint",
+    "pretest": "npm run compile && npm run lint",
     "watch": "tsc -watch -p .",
     "compile": "tsc -p .",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "pack": "pnpm vsce pack --no-dependencies --out out/extension.vsix"
+    "pack": "vsce pack --no-dependencies --out out/extension.vsix"
   },
   "dependencies": {
     "octokit": "^3.2.2"
